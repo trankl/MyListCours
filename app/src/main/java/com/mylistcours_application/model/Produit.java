@@ -7,6 +7,12 @@ public class Produit {
     private int produit_quantite;
     private boolean isActive;
 
+    // Contructor avec 2 parametres
+    public Produit(String i_produit_nom, int i_produit_quantite) {
+        this.produit_nom = i_produit_nom;
+        this.produit_quantite = i_produit_quantite;
+        this.isActive = true;
+    }
 
 
     // Contructor avec 3 parametres

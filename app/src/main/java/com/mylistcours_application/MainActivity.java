@@ -3,7 +3,9 @@ package com.mylistcours_application;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -19,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     EditText edt_nom_produit;
     EditText edt_quantite_produit;
     ListView listview_listCours;
-    Switch switch_select_produit;
 
     List<Produit> produitList= new ArrayList<>();
     DatabaseHelper databaseHelper;
@@ -32,6 +33,22 @@ public class MainActivity extends AppCompatActivity {
 
         fct_remplirvue();
         initialDBHelper();
+
+        this.listview_listCours.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        this.listview_listCours.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                CheckedTextView v = (CheckedTextView) view;
+                boolean currentCheck = v.isChecked();
+                Produit produit = (Produit) listview_listCours.getItemAtPosition(position);
+                produit.setActive(currentCheck);
+                AppelToast.displayCustomToast(MainActivity.this, "select ce produit " + position +" est active = " + produit.isActive());
+
+            }
+        });
+
         voirTout();
     }
 
@@ -39,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         this.edt_nom_produit =findViewById(R.id.xml_edt_nom_produit);
         this.edt_quantite_produit =findViewById(R.id.xml_edt_quantite_produit);
         this.listview_listCours =findViewById(R.id.xml_listview_listCours);
-        this.switch_select_produit =findViewById(R.id.xml_switch_select_produit);
     }
 
     public void initialDBHelper(){
@@ -52,9 +68,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             String nom = edt_nom_produit.getText().toString();
             int quantite = Integer.parseInt(edt_quantite_produit.getText().toString());
-            boolean select = switch_select_produit.isActivated();
 
-            Produit produit = new Produit(nom, quantite,select);
+            Produit produit = new Produit(nom, quantite);
 
             // on creer 1 objet type DatabaseHelper pour appeler la BD afin de memoriser ce produit
             // DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
@@ -86,7 +101,13 @@ public class MainActivity extends AppCompatActivity {
 
         AppelToast.displayCustomToast(this, "Voir la liste des cours");
 
+       for(int i=0;i<produitList.size(); i++ )  {
+            this.listview_listCours.setItemChecked(i,produitList.get(i).isActive());
+        }
+
     }
 
-
+    public void act_supprimer_select_produit(View view) {
+        AppelToast.displayCustomToast(this, "Supprimer les produits sont achetés");
+    }
 }

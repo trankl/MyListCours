@@ -50,26 +50,30 @@
         app:layout_constraintTop_toBottomOf="@+id/xml_edt_nom_produit"
         tools:ignore="TextContrastCheck" />
 
-    <Switch
-        android:id="@+id/xml_switch_select_produit"
+    <Button
+        android:id="@+id/xml_button_supprimer_produit"
         android:layout_width="140dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="70dp"
+        android:background="@color/gris"
         android:minHeight="48dp"
-        android:text="@string/switch_select"
+        android:onClick="act_supprimer_select_produit"
+        android:text="@string/button_select"
+        android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xml_edt_quantite_produit"
-        tools:text="Select" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xml_edt_quantite_produit" />
 
     <Button
         android:id="@+id/xml_button_ajouter_produit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="70dp"
+        android:background="@color/gris"
         android:onClick="act_ajouter_produit"
         android:text="@string/button_ajouter"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xml_edt_quantite_produit" />
 
     <Button

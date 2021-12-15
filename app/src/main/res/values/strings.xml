@@ -3,6 +3,6 @@
     <string name="phase_mon_liste_des_cours">Mon liste des cours</string>
     <string name="phase_nom_de_produit">Nom de produit</string>
     <string name="phase_quantite_de_produit">Quantité de produit</string>
-    <string name="switch_select">Sélecté</string>
+    <string name="button_select">Supprimer</string>
     <string name="button_ajouter">Ajouter</string>
 </resources>
