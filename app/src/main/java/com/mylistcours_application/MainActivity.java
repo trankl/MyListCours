@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     Produit produit;
     List<Produit> produitList= new ArrayList<>();
-    DatabaseHelper databaseHelper;
+    DatabaseHelper databaseHelper = MyApplication.getInstance().getDatabaseHelper();
 
 
     @Override
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         fct_remplirvue();
-        initialDBHelper();
 
         this.listview_listCours.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
@@ -58,12 +57,6 @@ public class MainActivity extends AppCompatActivity {
         this.edt_quantite_produit =findViewById(R.id.xml_edt_quantite_produit);
         this.listview_listCours =findViewById(R.id.xml_listview_listCours);
     }
-
-    public void initialDBHelper(){
-        // on creer 1 objet type DatabaseHelper pour appeler la BD afin de memoriser ce musicien
-        databaseHelper = new DatabaseHelper(MainActivity.this);
-    }
-
 
     public void act_ajouter_produit(View view) {
         try {
