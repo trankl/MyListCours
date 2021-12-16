@@ -107,4 +107,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return listProduits;
     }
+
+    public boolean removeProduit(int id){
+        boolean resultatSuppression= false;
+
+        SQLiteDatabase ref_db = this.getWritableDatabase();
+
+        String supprimerProduitStatement = "DELETE FROM "+ table_produit+" WHERE "+f_produit_id+" = "+id;
+
+        //Cette interface cursor fournit un accès en lecture-écriture aléatoire à l'ensemble de résultats renvoyé par une requête de base de données.
+        Cursor cursor_resultatALaRequete = ref_db.rawQuery(supprimerProduitStatement, null);
+
+        if(cursor_resultatALaRequete.moveToFirst() == true){
+            resultatSuppression = true;
+            } else {
+            resultatSuppression=false;
+        }
+
+
+        // fermer le cursor
+        cursor_resultatALaRequete.close();
+
+        // fermer la BD
+        ref_db.close();
+        return  resultatSuppression;
+    }
 }

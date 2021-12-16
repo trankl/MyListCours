@@ -11,7 +11,7 @@ public class Produit {
     public Produit(String i_produit_nom, int i_produit_quantite) {
         this.produit_nom = i_produit_nom;
         this.produit_quantite = i_produit_quantite;
-        this.isActive = true;
+        this.isActive = false;
     }
 
 

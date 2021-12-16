@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edt_quantite_produit;
     ListView listview_listCours;
 
+    Produit produit;
     List<Produit> produitList= new ArrayList<>();
     DatabaseHelper databaseHelper;
 
@@ -42,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
                 CheckedTextView v = (CheckedTextView) view;
                 boolean currentCheck = v.isChecked();
-                Produit produit = (Produit) listview_listCours.getItemAtPosition(position);
-                produit.setActive(currentCheck);
+                MainActivity.this.produit = (Produit) listview_listCours.getItemAtPosition(position);
+                MainActivity.this.produit.setActive(currentCheck);
                 AppelToast.displayCustomToast(MainActivity.this, "select ce produit " + position +" est active = " + produit.isActive());
 
             }
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             databaseHelper.addProduit(produit);
 
             AppelToast.displayCustomToast(this, "Nouveau musicien est créé.");
+            voirTout();
         } catch (Exception e){
             AppelToast.displayCustomToast(this, "Erreur quand on cree nouveau musicien"+e.toString());
         }
@@ -108,6 +110,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void act_supprimer_select_produit(View view) {
-        AppelToast.displayCustomToast(this, "Supprimer les produits sont achetés");
+        try{
+            if(this.produit.isActive()){
+                databaseHelper.removeProduit(produit.getProduit_id());
+                AppelToast.displayCustomToast(this, "Supprimer ce produit car il est acheté");
+                voirTout();
+            } else{
+                AppelToast.displayCustomToast(this, " Select le produit pour supprimer");
+            }
+        } catch (Exception e) {
+            AppelToast.displayCustomToast(this, "ERREUR: Ne peut pas supprimer ce produit "+ e.toString());
+        }
+
     }
 }
