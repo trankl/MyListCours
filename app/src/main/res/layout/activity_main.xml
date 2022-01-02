@@ -76,19 +76,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xml_edt_quantite_produit" />
 
-    <Button
-        android:id="@+id/xml_button_refraiche_list"
-        android:layout_width="40dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@android:drawable/ic_popup_sync"
-        android:backgroundTint="@color/gris"
-        android:onClick="act_refraiche_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
     <ListView
         android:id="@+id/xml_listview_listCours"
         android:layout_width="409dp"

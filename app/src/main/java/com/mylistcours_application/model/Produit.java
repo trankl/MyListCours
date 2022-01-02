@@ -32,7 +32,7 @@ public class Produit {
 
     @Override
     public String toString() {
-        return produit_id + ": " + produit_nom + ", quantité =" + produit_quantite;
+        return "- " + produit_nom.toUpperCase() + ", quantité =" + produit_quantite;
     }
 
     public int getProduit_id() {

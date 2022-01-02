@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean currentCheck = v.isChecked();
                 MainActivity.this.produit = (Produit) listview_listCours.getItemAtPosition(position);
                 MainActivity.this.produit.setActive(currentCheck);
-                AppelToast.displayCustomToast(MainActivity.this, "select ce produit " + position +" est active = " + produit.isActive());
+               // AppelToast.displayCustomToast(MainActivity.this, "select ce produit " + position +" est active = " + produit.isActive());
 
             }
         });
@@ -70,18 +70,13 @@ public class MainActivity extends AppCompatActivity {
             // on ajoute ce produit à la BD
             databaseHelper.addProduit(produit);
 
-            AppelToast.displayCustomToast(this, "Nouveau musicien est créé.");
+            AppelToast.displayCustomToast(this, "Nouveau produit est créé.");
             voirTout();
         } catch (Exception e){
-            AppelToast.displayCustomToast(this, "Erreur quand on cree nouveau musicien"+e.toString());
+            AppelToast.displayCustomToast(this, "Erreur quand on cree nouveau produit"+e.toString());
         }
 
     }
-
-    public void act_refraiche_list(View view) {
-        voirTout();
-    }
-
 
 
     public void voirTout() {
@@ -93,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter_listCours = new ArrayAdapter<Produit>(this, android.R.layout.simple_list_item_checked,produitList);
 
         listview_listCours.setAdapter(arrayAdapter_listCours);
-
-        AppelToast.displayCustomToast(this, "Voir la liste des cours");
 
        for(int i=0;i<produitList.size(); i++ )  {
             this.listview_listCours.setItemChecked(i,produitList.get(i).isActive());
